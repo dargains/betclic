@@ -23,7 +23,15 @@
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'Login',
+  data () {
+    return {
+      email: '',
+      password: ''
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
