@@ -105,11 +105,11 @@ export default {
     getCountry (id) {
       return this.countries.find(country => country.id === id)
     },
-    onBet () {
-      const result = []
+    async onBet () {
+      const bets = []
       for (const gameId in this.bets) {
         if (!!this.bets[gameId].team1 && !!this.bets[gameId].team2) {
-          result.push({
+          bets.push({
             user_id: this.user.id,
             game_id: parseInt(gameId),
             team1: this.bets[gameId].team1,
@@ -117,7 +117,8 @@ export default {
           })
         }
       }
-      console.log(result)
+      const response = await this.$store.dispatch('sendBet', bets)
+      console.log(response)
     }
   }
 }
