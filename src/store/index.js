@@ -47,14 +47,16 @@ export default new Vuex.Store({
   },
   mutations: {},
   actions: {
-    sendBet (store, data) {
-      console.log(store, data)
+    login (store, payload) {
+      console.log(store, payload)
+    },
+    sendBet (store, payload) {
+      console.log(store, payload)
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve('ok')
         }, 1000)
       })
     }
-  },
-  modules: {}
+  }
 })

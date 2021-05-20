@@ -1,7 +1,7 @@
 <template>
   <main>
-    <login />
-    <home />
+    <login v-if="!user.id" />
+    <home v-else />
   </main>
 </template>
 
@@ -14,6 +14,11 @@ export default {
   components: {
     Login,
     Home
+  },
+  computed: {
+    user () {
+      return this.$store.state.user
+    }
   }
 }
 </script>
