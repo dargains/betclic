@@ -30,4 +30,9 @@ export default {
 html {
   scroll-behavior: smooth;
 }
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
 </style>
