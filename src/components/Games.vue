@@ -4,7 +4,16 @@
     class="games"
   >
     <div class="wrapper">
-      <h2>Jogos do dia</h2>
+      <header>
+        <div>
+          <h2>Jogos do dia</h2>
+          <p>Coloca o resultado e faz a tua aposta</p>
+        </div>
+        <time
+          datetime="2008-02-14"
+          v-text="currentDate"
+        />
+      </header>
       <div class="table">
         <li
           v-for="(game, index) in games"
@@ -45,12 +54,15 @@
             <p v-text="getCountry(game.team2).name" />
           </label>
         </li>
+        <button>Apostar</button>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+const monthNames = ['Maio', 'Junho', 'Julho', 'Agosto']
+
 export default {
   name: 'Games',
   computed: {
@@ -59,6 +71,10 @@ export default {
     },
     countries () {
       return this.$store.state.countries
+    },
+    currentDate () {
+      const now = new Date()
+      return `${now.getDate()} de ${monthNames[now.getMonth() - 4]}`
     }
   },
   methods: {

@@ -5,6 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    user: {
+      id: 123,
+      name: 'Andre',
+      email: 'andre@email.com'
+    },
     games: [
       {
         id: 0,
