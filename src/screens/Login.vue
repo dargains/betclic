@@ -17,18 +17,34 @@
           type="text"
         >
       </label>
-      <button>login</button>
+      <button-vue
+        label="login"
+        @handle-click="onSubmit"
+      />
     </form>
   </section>
 </template>
 
 <script>
+import ButtonVue from '../components/Button.vue'
 export default {
   name: 'Login',
+  components: {
+    'button-vue': ButtonVue
+  },
   data () {
     return {
       email: '',
       password: ''
+    }
+  },
+  methods: {
+    onSubmit () {
+      const data = {
+        email: this.email,
+        password: this.password
+      }
+      console.log(data)
     }
   }
 }

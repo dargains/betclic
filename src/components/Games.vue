@@ -33,7 +33,7 @@
             </figure>
             <input
               :id="`game${index}1`"
-              type="text"
+              type="number"
             >
           </label>
           <span class="divider">:</span>
@@ -43,7 +43,7 @@
           >
             <input
               :id="`game${index}2`"
-              type="text"
+              type="number"
             >
             <figure class="flag">
               <img
@@ -54,17 +54,21 @@
             <p v-text="getCountry(game.team2).name" />
           </label>
         </li>
-        <button>Apostar</button>
+        <button-vue label="apostar" />
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import ButtonVue from './Button.vue'
 const monthNames = ['Maio', 'Junho', 'Julho', 'Agosto']
 
 export default {
   name: 'Games',
+  components: {
+    'button-vue': ButtonVue
+  },
   computed: {
     games () {
       return this.$store.state.games
@@ -92,22 +96,31 @@ export default {
   .table {
     max-width: 400px;
     margin: 0 auto;
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
   }
   .game {
     display: flex;
     align-items: center;
     gap: 8px;
+    background-color: #eee;
   }
   .team {
     display: flex;
     align-items: center;
     flex: 1;
     padding: 10px 0;
+    gap: 8px;
     &:nth-of-type(1) {
       justify-content: flex-end;
     }
     &:nth-of-type(2) {
       justify-content: flex-start;
+    }
+    p {
+      text-transform: uppercase;
+      font-size: .8rem;
     }
     input {
       border: 1px solid lightgray;
