@@ -1,6 +1,6 @@
 <template>
   <section class="login">
-    <form action="">
+    <div>
       <label for="email">
         <span>email</span>
         <input
@@ -14,14 +14,14 @@
         <input
           id="password"
           v-model="password"
-          type="text"
+          type="password"
         >
       </label>
       <button-vue
         label="login"
         @handle-click="onSubmit"
       />
-    </form>
+    </div>
   </section>
 </template>
 
@@ -51,12 +51,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-form {
+div {
   padding: 40px;
   text-align: center;
   max-width: 200px;
   margin: 0 auto;
   background-color: lightgray;
+}
   label {
     display: block;
     margin-bottom: 16px;
@@ -67,15 +68,7 @@ form {
     text-align: left;
     font-size: .7em;
   }
-  button {
-    width: 100%;
-    background-color: black;
-    color: white;
-    padding: 4px 10px;
-    text-transform: uppercase;
-  }
   input {
     width: 100%;
   }
-}
 </style>
