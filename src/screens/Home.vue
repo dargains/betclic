@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import AppHeader from '../components/Header'
-import Hero from '../components/Hero'
-import Games from '../components/Games'
-import News from '../components/News'
-import Ranking from '../components/Ranking'
-import AppFooter from '../components/Footer'
+import AppHeader from '../modules/Header'
+import Hero from '../modules/Hero'
+import Games from '../modules/Games'
+import News from '../modules/News'
+import Ranking from '../modules/Ranking'
+import AppFooter from '../modules/Footer'
 
 export default {
   components: {

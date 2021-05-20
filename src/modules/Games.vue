@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import ButtonVue from './Button.vue'
+import ButtonVue from '../components/Button.vue'
 const monthNames = ['Maio', 'Junho', 'Julho', 'Agosto']
 
 export default {
