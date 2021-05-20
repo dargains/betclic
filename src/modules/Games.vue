@@ -33,6 +33,7 @@
             </figure>
             <input
               :id="`game${index}1`"
+              v-model="bets[game.id].team1"
               type="number"
             >
           </label>
@@ -43,6 +44,7 @@
           >
             <input
               :id="`game${index}2`"
+              v-model="bets[game.id].team2"
               type="number"
             >
             <figure class="flag">
@@ -54,7 +56,10 @@
             <p v-text="getCountry(game.team2).name" />
           </label>
         </li>
-        <button-vue label="apostar" />
+        <button-vue
+          label="apostar"
+          @handle-click="onBet"
+        />
       </div>
     </div>
   </section>
@@ -69,6 +74,11 @@ export default {
   components: {
     'button-vue': ButtonVue
   },
+  data () {
+    return {
+      bets: {}
+    }
+  },
   computed: {
     games () {
       return this.$store.state.games
@@ -79,11 +89,35 @@ export default {
     currentDate () {
       const now = new Date()
       return `${now.getDate()} de ${monthNames[now.getMonth() - 4]}`
+    },
+    user () {
+      return this.$store.state.user
     }
+  },
+  created () {
+    const result = {}
+    this.games.forEach(game => {
+      result[game.id] = { team1: null, team2: null }
+    })
+    this.bets = result
   },
   methods: {
     getCountry (id) {
       return this.countries.find(country => country.id === id)
+    },
+    onBet () {
+      const result = []
+      for (const gameId in this.bets) {
+        if (!!this.bets[gameId].team1 && !!this.bets[gameId].team2) {
+          result.push({
+            user_id: this.user.id,
+            game_id: parseInt(gameId),
+            team1: this.bets[gameId].team1,
+            team2: this.bets[gameId].team2
+          })
+        }
+      }
+      console.log(result)
     }
   }
 }
