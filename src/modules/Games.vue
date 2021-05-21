@@ -14,26 +14,29 @@
           v-text="currentDate"
         />
       </header>
-      <div class="table">
+      <div
+        v-if="matches.length"
+        class="table"
+      >
         <li
-          v-for="(game, index) in games"
-          :key="game.id"
+          v-for="(match, index) in matches"
+          :key="match.id"
           class="game"
         >
           <label
             class="team"
             :for="`game${index}1`"
           >
-            <p v-text="getCountry(game.team1).name" />
+            <p v-text="getCountry(match.team1).name" />
             <figure class="flag">
               <img
-                :src="`https://www.countryflags.io/${getCountry(game.team1).flag}/flat/64.png`"
-                :alt="getCountry(game.team1).name"
+                :src="`https://www.countryflags.io/${getCountry(match.team1).flag}/flat/64.png`"
+                :alt="getCountry(match.team1).name"
               >
             </figure>
             <input
               :id="`game${index}1`"
-              v-model="bets[game.id].team1"
+              v-model="bets[match.id].team1"
               type="number"
             >
           </label>
@@ -44,16 +47,16 @@
           >
             <input
               :id="`game${index}2`"
-              v-model="bets[game.id].team2"
+              v-model="bets[match.id].team2"
               type="number"
             >
             <figure class="flag">
               <img
-                :src="`https://www.countryflags.io/${getCountry(game.team2).flag}/flat/64.png`"
-                :alt="getCountry(game.team2).name"
+                :src="`https://www.countryflags.io/${getCountry(match.team2).flag}/flat/64.png`"
+                :alt="getCountry(match.team2).name"
               >
             </figure>
-            <p v-text="getCountry(game.team2).name" />
+            <p v-text="getCountry(match.team2).name" />
           </label>
         </li>
         <button-vue
@@ -80,8 +83,8 @@ export default {
     }
   },
   computed: {
-    games () {
-      return this.$store.state.games
+    matches () {
+      return this.$store.state.matches
     },
     teams () {
       return this.$store.state.teams
@@ -96,9 +99,10 @@ export default {
   },
   created () {
     const result = {}
-    this.games.forEach(game => {
+    this.matches.forEach(game => {
       result[game.id] = { team1: null, team2: null }
     })
+    console.log(result)
     this.bets = result
   },
   methods: {

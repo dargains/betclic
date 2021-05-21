@@ -3,78 +3,14 @@ import Vuex from 'vuex'
 import axios from 'axios'
 
 Vue.use(Vuex)
-axios.defaults.baseURL = 'https://eurovaibater.pt/directus/public/betclic/items'
+axios.defaults.baseURL = 'https://eurovaibater.pt/directus/public/betclic/'
 
 export default new Vuex.Store({
   state: {
-    user: {
-    },
-    matches: [
-      {
-        id: 0,
-        team1: 1,
-        team2: 2
-      },
-      {
-        id: 1,
-        team1: 3,
-        team2: 4
-      }
-    ],
-    teams: [
-      {
-        id: 1,
-        name: 'Ucrânia',
-        flag: 'ua'
-      },
-      {
-        id: 2,
-        name: 'Austria',
-        flag: 'at'
-      },
-      {
-        id: 3,
-        name: 'Rússia',
-        flag: 'ru'
-      },
-      {
-        id: 4,
-        name: 'Dinamarca',
-        flag: 'dk'
-      }
-    ],
-    news: [
-      {
-        id: 1,
-        title: 'Cristiano Lesionado após jogo com Holanda',
-        text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia sunt, beatae odio ab eligendi dolor quia accusamus rerum nemo officiis.'
-      },
-      {
-        id: 2,
-        title: 'Título curto',
-        text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia sunt, beatae odio ab eligendi dolor quia accusamus rerum nemo officiis.'
-      },
-      {
-        id: 3,
-        title: 'Um título de notícia muito grande sobre o jogo de Portugal com França',
-        text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia sunt, beatae odio ab eligendi dolor quia accusamus rerum nemo officiis.'
-      },
-      {
-        id: 4,
-        title: 'Cristiano Lesionado após jogo com Holanda',
-        text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia sunt, beatae odio ab eligendi dolor quia accusamus rerum nemo officiis.'
-      },
-      {
-        id: 5,
-        title: 'Título curto',
-        text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia sunt, beatae odio ab eligendi dolor quia accusamus rerum nemo officiis.'
-      },
-      {
-        id: 6,
-        title: 'Um título de notícia muito grande sobre o jogo de Portugal com França',
-        text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia sunt, beatae odio ab eligendi dolor quia accusamus rerum nemo officiis.'
-      }
-    ]
+    user: {},
+    matches: [],
+    teams: [],
+    news: []
   },
   getters: {
     ranking () {
@@ -95,14 +31,56 @@ export default new Vuex.Store({
       return list.sort((a, b) => b.points - a.points)
     }
   },
-  mutations: {},
-  actions: {
-    login (store, payload) {
-      console.log(store, payload)
+  mutations: {
+    setUser (state, payload) {
+      console.log(payload)
+      state.user = payload
     },
-    async getData ({ commit }) {
-      const teams = await axios('/teams')
-      console.log(teams)
+    setTeams (state, payload) {
+      state.teams = payload
+    },
+    setMatches (state, payload) {
+      state.matches = payload
+    },
+    setNews (state, payload) {
+      state.news = payload
+    }
+  },
+  actions: {
+    login ({ commit, dispatch }, payload) {
+      return new Promise((resolve, reject) => {
+        axios.post('/auth/authenticate', payload).then(response => {
+          const { user } = response.data.data
+          const newUser = {
+            token: response.data.data.token,
+            id: user.id,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            email: user.email
+          }
+          dispatch('getData', newUser.token).then(() => {
+            commit('setUser', newUser)
+          })
+        }).catch(error => {
+          reject(error.response.data.error.message)
+        })
+      })
+    },
+    logout ({ commit }) {
+      const emptyUser = {}
+      commit('setUser', emptyUser)
+    },
+    async getData ({ commit }, token) {
+      const auth = { headers: { Authorization: `Bearer ${token}` } }
+      const teams = await axios('/items/teams', auth)
+      const matches = await axios('/items/matches', auth)
+      const news = await axios('/items/news', auth)
+      return new Promise(resolve => {
+        commit('setTeams', teams.data.data)
+        commit('setMatches', matches.data.data)
+        commit('setNews', news.data.data)
+        resolve()
+      })
     },
     getBets ({ commit }) {
 
