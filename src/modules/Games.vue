@@ -27,7 +27,7 @@
             <p v-text="getCountry(game.team1).name" />
             <figure class="flag">
               <img
-                :src="getCountry(game.team1).flag"
+                :src="`https://www.countryflags.io/${getCountry(game.team1).flag}/flat/64.png`"
                 :alt="getCountry(game.team1).name"
               >
             </figure>
@@ -49,7 +49,7 @@
             >
             <figure class="flag">
               <img
-                :src="getCountry(game.team2).flag"
+                :src="`https://www.countryflags.io/${getCountry(game.team2).flag}/flat/64.png`"
                 :alt="getCountry(game.team2).name"
               >
             </figure>
@@ -164,8 +164,6 @@ export default {
     }
   }
   .flag {
-    width: 16px;
-    height: 12px;
-    background-color: red;
+    width: 24px;
   }
 </style>

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
+// axios.defaults.baseURL = 'https://mysteryweek.pt/directus/public/mysteryw/items'
 
 export default new Vuex.Store({
   state: {
@@ -26,22 +27,22 @@ export default new Vuex.Store({
       {
         id: 1,
         name: 'Ucrânia',
-        flag: 'asd'
+        flag: 'ua'
       },
       {
         id: 2,
         name: 'Austria',
-        flag: 'asd'
+        flag: 'at'
       },
       {
         id: 3,
         name: 'Rússia',
-        flag: 'asd'
+        flag: 'ru'
       },
       {
         id: 4,
         name: 'Dinamarca',
-        flag: 'asd'
+        flag: 'dk'
       }
     ]
   },
@@ -49,6 +50,9 @@ export default new Vuex.Store({
   actions: {
     login (store, payload) {
       console.log(store, payload)
+    },
+    getBets ({ commit }) {
+
     },
     sendBet (store, payload) {
       console.log(store, payload)
