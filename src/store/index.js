@@ -44,6 +44,38 @@ export default new Vuex.Store({
         name: 'Dinamarca',
         flag: 'dk'
       }
+    ],
+    news: [
+      {
+        id: 1,
+        title: 'Cristiano Lesionado após jogo com Holanda',
+        text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia sunt, beatae odio ab eligendi dolor quia accusamus rerum nemo officiis.'
+      },
+      {
+        id: 2,
+        title: 'Título curto',
+        text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia sunt, beatae odio ab eligendi dolor quia accusamus rerum nemo officiis.'
+      },
+      {
+        id: 3,
+        title: 'Um título de notícia muito grande sobre o jogo de Portugal com França',
+        text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia sunt, beatae odio ab eligendi dolor quia accusamus rerum nemo officiis.'
+      },
+      {
+        id: 4,
+        title: 'Cristiano Lesionado após jogo com Holanda',
+        text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia sunt, beatae odio ab eligendi dolor quia accusamus rerum nemo officiis.'
+      },
+      {
+        id: 5,
+        title: 'Título curto',
+        text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia sunt, beatae odio ab eligendi dolor quia accusamus rerum nemo officiis.'
+      },
+      {
+        id: 6,
+        title: 'Um título de notícia muito grande sobre o jogo de Portugal com França',
+        text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia sunt, beatae odio ab eligendi dolor quia accusamus rerum nemo officiis.'
+      }
     ]
   },
   mutations: {},
