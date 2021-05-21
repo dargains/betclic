@@ -25,6 +25,9 @@ export default {
     News,
     Ranking,
     AppFooter
+  },
+  created () {
+    this.$store.dispatch('getData')
   }
 }
 </script>

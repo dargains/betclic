@@ -1,17 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
-// axios.defaults.baseURL = 'https://mysteryweek.pt/directus/public/mysteryw/items'
+axios.defaults.baseURL = 'https://eurovaibater.pt/directus/public/betclic/items'
 
 export default new Vuex.Store({
   state: {
     user: {
-      id: 1,
-      name: 'Andre',
-      email: 'andre@email.com'
     },
-    games: [
+    matches: [
       {
         id: 0,
         team1: 1,
@@ -23,7 +21,7 @@ export default new Vuex.Store({
         team2: 4
       }
     ],
-    countries: [
+    teams: [
       {
         id: 1,
         name: 'Ucrânia',
@@ -101,6 +99,10 @@ export default new Vuex.Store({
   actions: {
     login (store, payload) {
       console.log(store, payload)
+    },
+    async getData ({ commit }) {
+      const teams = await axios('/teams')
+      console.log(teams)
     },
     getBets ({ commit }) {
 

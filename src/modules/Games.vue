@@ -83,8 +83,8 @@ export default {
     games () {
       return this.$store.state.games
     },
-    countries () {
-      return this.$store.state.countries
+    teams () {
+      return this.$store.state.teams
     },
     currentDate () {
       const now = new Date()
@@ -103,7 +103,7 @@ export default {
   },
   methods: {
     getCountry (id) {
-      return this.countries.find(country => country.id === id)
+      return this.teams.find(country => country.id === id)
     },
     async onBet () {
       const bets = []
