@@ -17,6 +17,16 @@
           type="password"
         >
       </label>
+      <p
+        v-if="error"
+        class="error"
+        v-text="error"
+      />
+      <p
+        v-if="isLoading"
+        class="loading"
+        v-text="`loading...`"
+      />
       <button-vue
         label="login"
         @handle-click="onSubmit"
@@ -35,29 +45,35 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      error: '',
+      isLoading: false
     }
   },
   methods: {
     onSubmit () {
+      this.error = ''
+      this.isLoading = true
       const data = {
         email: this.email,
         password: this.password
       }
-      this.$store.dispatch('login', data)
+      this.$store.dispatch('login', data).catch(message => {
+        this.error = message
+      })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-div {
-  padding: 40px;
-  text-align: center;
-  max-width: 200px;
-  margin: 0 auto;
-  background-color: lightgray;
-}
+  div {
+    padding: 40px;
+    text-align: center;
+    max-width: 200px;
+    margin: 0 auto;
+    background-color: lightgray;
+  }
   label {
     display: block;
     margin-bottom: 16px;
@@ -70,5 +86,9 @@ div {
   }
   input {
     width: 100%;
+  }
+  .error {
+    color: red;
+    margin-bottom: 8px;
   }
 </style>

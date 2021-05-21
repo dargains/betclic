@@ -6,7 +6,10 @@
         <a href="#news">Notícias</a>
         <a href="#ranking">Ranking</a>
       </nav>
-      <button class="logout">
+      <button
+        class="logout"
+        @click="logout"
+      >
         logout
       </button>
     </div>
@@ -15,7 +18,12 @@
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  methods: {
+    logout () {
+      this.$store.dispatch('logout')
+    }
+  }
 }
 </script>
 
