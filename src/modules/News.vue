@@ -57,4 +57,9 @@ export default {
 .text {
   font-size: .8rem;
 }
+@media (max-width: 768px) {
+  .items {
+    grid-template-columns: 1fr;
+  }
+}
 </style>

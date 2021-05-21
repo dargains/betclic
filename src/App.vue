@@ -40,4 +40,9 @@ html {
   margin: 0 auto;
   padding: 0 40px;
 }
+@media (max-width: 768px) {
+  .wrapper {
+  padding: 0 24px;
+  }
+}
 </style>
