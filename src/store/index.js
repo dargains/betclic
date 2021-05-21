@@ -78,6 +78,25 @@ export default new Vuex.Store({
       }
     ]
   },
+  getters: {
+    ranking () {
+      const list = [
+        {
+          name: 'Andre',
+          points: 130
+        },
+        {
+          name: 'Duarte',
+          points: 40
+        },
+        {
+          name: 'Ricardo',
+          points: 80
+        }
+      ]
+      return list.sort((a, b) => b.points - a.points)
+    }
+  },
   mutations: {},
   actions: {
     login (store, payload) {

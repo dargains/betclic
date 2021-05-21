@@ -36,7 +36,7 @@ html {
   scroll-behavior: smooth;
 }
 .wrapper {
-  max-width: 1200px;
+  max-width: 1024px;
   margin: 0 auto;
   padding: 0 40px;
 }
