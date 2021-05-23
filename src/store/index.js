@@ -8,6 +8,7 @@ axios.defaults.baseURL = 'https://eurovaibater.pt/directus/public/betclic/'
 export default new Vuex.Store({
   state: {
     user: {},
+    auth: null,
     matches: [],
     teams: [],
     news: []
@@ -33,8 +34,10 @@ export default new Vuex.Store({
   },
   mutations: {
     setUser (state, payload) {
-      console.log(payload)
       state.user = payload
+    },
+    setAuth (state, payload) {
+      state.auth = payload
     },
     setTeams (state, payload) {
       state.teams = payload
@@ -58,6 +61,7 @@ export default new Vuex.Store({
             last_name: user.last_name,
             email: user.email
           }
+          commit('setAuth', { headers: { Authorization: `Bearer ${newUser.token}` } })
           dispatch('getData', newUser.token).then(() => {
             commit('setUser', newUser)
           })
@@ -70,11 +74,10 @@ export default new Vuex.Store({
       const emptyUser = {}
       commit('setUser', emptyUser)
     },
-    async getData ({ commit }, token) {
-      const auth = { headers: { Authorization: `Bearer ${token}` } }
-      const teams = await axios('/items/teams', auth)
-      const matches = await axios('/items/matches', auth)
-      const news = await axios('/items/news', auth)
+    async getData ({ state, commit }) {
+      const teams = await axios('/items/teams', state.auth)
+      const matches = await axios('/items/matches', state.auth)
+      const news = await axios('/items/news', state.auth)
       return new Promise(resolve => {
         commit('setTeams', teams.data.data)
         commit('setMatches', matches.data.data)
@@ -85,12 +88,21 @@ export default new Vuex.Store({
     getBets ({ commit }) {
 
     },
-    sendBet (store, payload) {
-      console.log(store, payload)
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve('ok')
-        }, 1000)
+    async sendBet ({ state }, payload) {
+      const batch = payload.map(bet => {
+        const data = {
+          user: state.user.id,
+          ...bet
+        }
+        return axios.post('/items/bets', data, state.auth)
+      })
+      debugger
+      return new Promise((resolve, reject) => {
+        Promise.all(batch).then(responses => {
+          resolve(true)
+        }).catch(error => {
+          reject(error)
+        })
       })
     }
   }

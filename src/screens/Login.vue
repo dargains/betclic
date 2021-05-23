@@ -25,7 +25,7 @@
       <p
         v-if="isLoading"
         class="loading"
-        v-text="`loading...`"
+        v-text="`a carregar...`"
       />
       <button-vue
         label="login"

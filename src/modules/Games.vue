@@ -92,9 +92,6 @@ export default {
     currentDate () {
       const now = new Date()
       return `${now.getDate()} de ${monthNames[now.getMonth() - 4]}`
-    },
-    user () {
-      return this.$store.state.user
     }
   },
   created () {
@@ -102,7 +99,6 @@ export default {
     this.matches.forEach(game => {
       result[game.id] = { team1: null, team2: null }
     })
-    console.log(result)
     this.bets = result
   },
   methods: {
@@ -114,15 +110,18 @@ export default {
       for (const gameId in this.bets) {
         if (!!this.bets[gameId].team1 && !!this.bets[gameId].team2) {
           bets.push({
-            user_id: this.user.id,
-            game_id: parseInt(gameId),
+            match_id: parseInt(gameId),
             team1: this.bets[gameId].team1,
             team2: this.bets[gameId].team2
           })
         }
       }
-      const response = await this.$store.dispatch('sendBet', bets)
-      console.log(response)
+      if (bets.length) {
+        const response = await this.$store.dispatch('sendBet', bets)
+        response
+          ? console.log('ok')
+          : console.log('fail')
+      }
     }
   }
 }
