@@ -59,9 +59,9 @@
             <p v-text="getCountry(match.team2).name" />
           </label>
         </li>
-        <button-vue
-          label="apostar"
-          @handle-click="onBet"
+        <button
+          @click="onBet"
+          v-text="apostar"
         />
       </div>
     </div>
@@ -69,14 +69,10 @@
 </template>
 
 <script>
-import ButtonVue from '../components/Button.vue'
 const monthNames = ['Maio', 'Junho', 'Julho', 'Agosto']
 
 export default {
   name: 'Games',
-  components: {
-    'button-vue': ButtonVue
-  },
   data () {
     return {
       bets: {}
