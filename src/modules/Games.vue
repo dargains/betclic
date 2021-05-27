@@ -167,6 +167,16 @@ export default {
     }
   }
   .flag {
-    width: 24px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid white;
+    img {
+      height: 32px;
+      width: 32px;
+      top: -6px;
+      left: -6px;
+    }
   }
 </style>
