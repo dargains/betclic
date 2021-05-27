@@ -51,6 +51,7 @@ export default {
     max-width: 640px;
     font-size: 15px;
     line-height: 18px;
+    margin: 0 auto;
   }
 }
 </style>
