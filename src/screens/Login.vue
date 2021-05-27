@@ -126,7 +126,7 @@ input {
   border: 0;
   width: 100%;
   padding: 16px;
-  font-size: 24px;
+  font-size: 20px;
   font-style: italic;
   font-family: Gotham;
 }

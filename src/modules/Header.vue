@@ -4,13 +4,14 @@
       <nav>
         <a href="#games">Jogos</a>
         <a href="#news">Notícias</a>
+        <a href="#prize">Prémio</a>
         <a href="#ranking">Ranking</a>
       </nav>
       <button
         class="logout"
         @click="logout"
       >
-        logout
+        <span>logout</span>
       </button>
     </div>
   </header>
@@ -31,10 +32,11 @@ export default {
 .header {
   text-align: center;
   padding: 20px 0;
+  z-index: 1;
 }
 nav {
   display: flex;
-  gap: 16px;
+  gap: 40px;
   align-items: center;
   justify-content: center;
 }
@@ -46,7 +48,17 @@ a {
   position: absolute;
   right: 0;
   top: 0;
-  padding: 5px 10px;
-  background-color: #eee;
+  padding: 16px 40px;
+  background-color: #000;
+  transform: rotate(1.5deg);
+  background-image: url('../assets/images/plastic_3 1.png');
+  background-color: #000;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  span {
+    color: #FFF;
+    font-size: 18px;
+  }
 }
 </style>

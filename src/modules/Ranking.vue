@@ -35,6 +35,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.ranking {
+
+  background-color: #DF0C14;
+}
   .items {
     padding: 20px 0;
     display: flex;

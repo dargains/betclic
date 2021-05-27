@@ -37,6 +37,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.news {
+
+  background-color: #DF0C14;
+}
 .items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

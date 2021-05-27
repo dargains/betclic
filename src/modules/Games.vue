@@ -126,6 +126,7 @@ export default {
 <style lang="scss" scoped>
   .games {
     text-align: center;
+    background-color: #DF0C14;
   }
   .table {
     max-width: 400px;
