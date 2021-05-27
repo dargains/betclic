@@ -78,7 +78,7 @@ h2 {
 .items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 80px 40px;
   top: -20px;
   width: 95%;
   margin: 0 auto;
