@@ -1,6 +1,12 @@
 <template>
   <footer class="footer">
-    footer
+    <div class="wrapper">
+      <p>BETCLIC EURO 2020</p>
+      <div>
+        <a href="#">Política de privacidade</a>
+        <a href="#">Regulamento</a>
+      </div>
+    </div>
   </footer>
 </template>
 
@@ -10,4 +16,19 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+footer {
+  padding: 30px 0;
+}
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+a {
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-left: 60px;
+}
+</style>
