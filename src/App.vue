@@ -24,30 +24,6 @@ export default {
 </script>
 
 <style>
-@font-face {
-  font-family: Gotham;
-  src: url(./assets/fonts/Gotham-Regular.ttf);
-  font-weight: regular;
-  font-style: normal;
-}
-@font-face {
-  font-family: Gotham;
-  src: url(./assets/fonts/Gotham-Italic.ttf);
-  font-weight: regular;
-  font-style: italic;
-}
-@font-face {
-  font-family: Gotham;
-  src: url(./assets/fonts/Gotham-Bold.ttf);
-  font-weight: bold;
-  font-style: normal;
-}
-@font-face {
-  font-family: Gotham;
-  src: url(./assets/fonts/Gotham-BoldItalic.ttf);
-  font-weight: bold;
-  font-style: italic;
-}
 #app {
   font-family: Gotham, 'Courier New', Courier, monospace;
   -webkit-font-smoothing: antialiased;
