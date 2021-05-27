@@ -88,6 +88,7 @@ video {
 * {
   box-sizing: border-box;
   position: relative;
+  text-transform: uppercase;
 }
 
 body {
@@ -131,6 +132,7 @@ button {
   background-color: transparent;
   border: 0;
   border-radius: 0;
+  cursor: pointer;
 }
 
 input {
