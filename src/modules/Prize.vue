@@ -23,5 +23,6 @@ export default {
 <style lang="scss" scoped>
 .prize {
   margin-top: -40%;
+  background-color: #DF0C14;
 }
 </style>

@@ -39,6 +39,16 @@
           </figure>
         </article>
       </div>
+
+      <figure
+        id="prize"
+        class="prize"
+      >
+        <img
+          src="../assets/images/prize.png"
+          alt="Prémio"
+        >
+      </figure>
     </div>
   </section>
 </template>
@@ -59,6 +69,7 @@ export default {
   background-color: #DF0C14;
   padding-top: 100px;
   z-index: 1;
+  margin-bottom: -340px;
 }
 h2 {
   font-size: 28px;
@@ -73,7 +84,7 @@ h2 {
   padding: 10px 16px;
   display: inline-block;
   top: -20px;
-  z-index: 1;
+  z-index: 2;
 }
 .items {
   display: grid;
@@ -82,6 +93,7 @@ h2 {
   top: -20px;
   width: 95%;
   margin: 0 auto;
+  z-index: 1;
 }
 .item {
   background-color: #F4F4F3;
@@ -120,6 +132,9 @@ h2 {
   top: 80%;
   right: 0;
   left: 0;
+}
+.prize {
+  top: -240px;
 }
 @media (max-width: 768px) {
   .items {

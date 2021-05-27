@@ -33,7 +33,10 @@ export default {
 }
 .background {
   position: absolute;
+  width: 100%;
   top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .paperTop {
   position: absolute;
