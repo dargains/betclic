@@ -46,7 +46,7 @@ export default {
   max-width: 940px;
   margin: 0 auto;
   text-align: center;
-  padding: 20px 40px 40px;
+  padding: 20px 40px 60px;
   p {
     max-width: 640px;
     font-size: 15px;

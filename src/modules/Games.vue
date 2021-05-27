@@ -5,14 +5,20 @@
   >
     <div class="wrapper">
       <header>
+        <figure class="paperTop">
+          <img
+            src="../assets/images/paper_2 1.svg"
+            alt="paper top"
+          >
+        </figure>
+        <h2>Jogos do dia</h2>
         <div>
-          <h2>Jogos do dia</h2>
           <p>Coloca o resultado e faz a tua aposta</p>
+          <time
+            datetime="2008-02-14"
+            v-text="currentDate"
+          />
         </div>
-        <time
-          datetime="2008-02-14"
-          v-text="currentDate"
-        />
       </header>
       <div
         v-if="matches.length"
@@ -60,9 +66,17 @@
           </label>
         </li>
         <button
+          class="button"
           @click="onBet"
-          v-text="apostar"
-        />
+        >
+          <span>apostar</span>
+        </button>
+        <figure class="paperBottom">
+          <img
+            src="../assets/images/paper_2 2.svg"
+            alt="paper bottom"
+          >
+        </figure>
       </div>
     </div>
   </section>
@@ -125,21 +139,57 @@ export default {
 
 <style lang="scss" scoped>
   .games {
-    text-align: center;
     background-color: #DF0C14;
+    z-index: 1;
+  }
+  header {
+    padding: 0 30px;
+    margin-bottom: 12px;
+    .paperTop {
+      position: absolute;
+      right: 0;
+      left: 0;
+      top: -60px;
+    }
+    h2 {
+      font-size: 28px;
+      font-weight: bold;
+      color: #FFF;
+      transform: rotate(-1.5deg);
+      background-image: url('../assets/images/plastic_1.png');
+      background-color: #000;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      padding: 10px 16px;
+      display: inline-block;
+      top: -20px;
+    }
+    div {
+      background-color: #F4F4F3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    p {
+      font-size: 16px;
+    }
+    time {
+      font-size: 24px;
+    }
   }
   .table {
-    max-width: 400px;
-    margin: 0 auto;
+    background-color: #F4F4F3;
     display: flex;
-    gap: 12px;
+    gap: 16px;
     flex-direction: column;
+    padding: 0 30px;
   }
   .game {
     display: flex;
     align-items: center;
     gap: 8px;
-    background-color: #eee;
+    background-color: #C4C4C4;
   }
   .team {
     display: flex;
@@ -155,25 +205,52 @@ export default {
     }
     p {
       text-transform: uppercase;
-      font-size: .8rem;
+      font-size: 30px;
+      line-height: 33px;
     }
     input {
-      border: 1px solid lightgray;
-      width: 20px;
+      border: 0;
       text-align: center;
+      background-color: #F4F4F3;
+      font-size: 26px;
+      width: 50px;
+      height: 50px;
     }
   }
   .flag {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     overflow: hidden;
     border: 4px solid white;
+    margin: 0 20px;
     img {
-      height: 32px;
-      width: 32px;
+      height: 36px;
+      width: 36px;
       top: -6px;
       left: -6px;
     }
+  }
+  .button {
+    transform: rotate(-1.5deg);
+    background-image: url('../assets/images/plastic_2.png');
+    background-color: #000;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 20px;
+    top: 30px;
+    z-index: 1;
+    span {
+      font-size: 28px;
+      color: #FFF;
+      font-weight: bold;
+    }
+  }
+  .paperBottom {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: -75px;
   }
 </style>
