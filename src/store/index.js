@@ -11,7 +11,8 @@ export default new Vuex.Store({
     auth: null,
     matches: [],
     teams: [],
-    news: []
+    news: [],
+    users: []
   },
   getters: {
     ranking () {
@@ -47,6 +48,9 @@ export default new Vuex.Store({
     },
     setNews (state, payload) {
       state.news = payload
+    },
+    setUsers (state, payload) {
+      state.users = payload
     }
   },
   actions: {
@@ -75,14 +79,20 @@ export default new Vuex.Store({
       commit('setUser', emptyUser)
     },
     async getData ({ state, commit }) {
-      const teams = await axios('/items/teams', state.auth)
-      const matches = await axios('/items/matches', state.auth)
-      const news = await axios('/items/news', state.auth)
+      const calls = [
+        axios('/items/teams', state.auth),
+        axios('/items/matches', state.auth),
+        axios('/items/news', state.auth),
+        axios('/users', state.auth)
+      ]
       return new Promise(resolve => {
-        commit('setTeams', teams.data.data)
-        commit('setMatches', matches.data.data)
-        commit('setNews', news.data.data)
-        resolve()
+        Promise.all(calls).then(responses => {
+          commit('setTeams', responses[0].data.data)
+          commit('setMatches', responses[1].data.data)
+          commit('setNews', responses[2].data.data)
+          commit('setUsers', responses[3].data.data)
+          resolve()
+        })
       })
     },
     getBets ({ commit }) {
@@ -96,7 +106,6 @@ export default new Vuex.Store({
         }
         return axios.post('/items/bets', data, state.auth)
       })
-      debugger
       return new Promise((resolve, reject) => {
         Promise.all(batch).then(responses => {
           resolve(true)
