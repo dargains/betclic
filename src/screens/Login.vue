@@ -1,52 +1,66 @@
 <template>
   <section class="login">
-    <div class="wrapper">
-      <figure class="background">
-        <img
-          src="../assets/images/hero 1.png"
-          alt="Este euro vai bater"
-        >
-      </figure>
-      <div class="form">
-        <figure class="paperTop">
+    <div class="intro">
+      <div class="wrapper">
+        <figure class="background">
           <img
-            src="../assets/images/paper_1 1.svg"
-            alt="paper top"
+            src="../assets/images/hero 1.png"
+            alt="Este euro vai bater"
           >
         </figure>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-        <label for="email">
-          <input
-            id="email"
-            v-model="email"
-            type="text"
-            placeholder="email"
+        <div class="form">
+          <figure class="paperTop">
+            <img
+              src="../assets/images/paper_1 1.svg"
+              alt="paper top"
+            >
+          </figure>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+          <label for="email">
+            <input
+              id="email"
+              v-model="email"
+              type="text"
+              placeholder="email"
+            >
+          </label>
+          <label for="password">
+            <input
+              id="password"
+              v-model="password"
+              type="password"
+              placeholder="password"
+            >
+          </label>
+          <p
+            v-if="error"
+            class="error"
+            v-text="error"
+          />
+          <p
+            v-if="isLoading"
+            class="loading"
+            v-text="`a carregar...`"
+          />
+          <button
+            class="button"
+            @click="onSubmit"
           >
-        </label>
-        <label for="password">
-          <input
-            id="password"
-            v-model="password"
-            type="password"
-            placeholder="password"
+            <span>login</span>
+          </button>
+          <figure class="paperBottom">
+            <img
+              src="../assets/images/homem 1.png"
+              alt="Dude"
+            >
+          </figure>
+        </div>
+        <figure class="logo">
+          <img
+            src="../assets/images/logo.svg"
+            alt="BetClic"
           >
-        </label>
-        <p
-          v-if="error"
-          class="error"
-          v-text="error"
-        />
-        <p
-          v-if="isLoading"
-          class="loading"
-          v-text="`a carregar...`"
-        />
-        <button
-          class="button"
-          @click="onSubmit"
-        >
-          <span>login</span>
-        </button>
+        </figure>
       </div>
     </div>
   </section>
@@ -72,6 +86,7 @@ export default {
         password: this.password
       }
       this.$store.dispatch('login', data).catch(message => {
+        this.isLoading = false
         this.error = message
       })
     }
@@ -81,32 +96,25 @@ export default {
 
 <style lang="scss" scoped>
 section {
-  background-color: #DF0C14;
-  min-height: 100vh;
+  height: 100vh;
+  padding: 30px;
+  overflow: hidden;
 }
-.button {
-  transform: rotate(-1.5deg);
-  background-image: url('../assets/images/plastic_1.png');
-  background-color: #000;
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  padding: 12px 60px;
-  span {
-    font-size: 28px;
-    color: #FFF;
-    font-weight: bold;
-  }
+.intro {
+  background-color: #DF0C14;
+  height: 100%;
 }
 .form {
-  padding: 40px;
+  padding: 10px 50px 40px;
   text-align: center;
   max-width: 500px;
+  top: -100px;
   margin: 0 auto;
   background-color: #F4F4F3;
 }
 p {
   font-size: 15px;
+  margin-bottom: 20px;
 }
 label {
   display: block;
@@ -124,12 +132,40 @@ input {
 }
 .error {
   color: red;
-  margin-bottom: 8px;
+  margin-bottom: 20px;
+}
+.button {
+  transform: rotate(-1.5deg);
+  background-image: url('../assets/images/plastic_1.png');
+  background-color: #000;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 12px 60px;
+  z-index: 1;
+  span {
+    font-size: 28px;
+    color: #FFF;
+    font-weight: bold;
+  }
 }
 .paperTop {
   position: absolute;
-  top: -100%;
+  top: -110px;
   left: 0;
   right: 0;
+}
+.paperBottom {
+  position: absolute;
+  width: 560px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 80%;
+}
+.logo {
+  position: absolute;
+  right: 0;
+  bottom: -100px;
+  width: 240px;
 }
 </style>
