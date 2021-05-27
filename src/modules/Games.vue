@@ -140,7 +140,7 @@ export default {
 <style lang="scss" scoped>
   .games {
     background-color: #DF0C14;
-    z-index: 1;
+    z-index: 2;
   }
   header {
     padding: 0 30px;
@@ -207,6 +207,7 @@ export default {
       text-transform: uppercase;
       font-size: 30px;
       line-height: 33px;
+      top: 2px;
     }
     input {
       border: 0;
@@ -225,10 +226,10 @@ export default {
     border: 4px solid white;
     margin: 0 20px;
     img {
-      height: 36px;
-      width: 36px;
-      top: -6px;
-      left: -6px;
+      height: 38px;
+      width: 38px;
+      top: -7px;
+      left: -7px;
     }
   }
   .button {

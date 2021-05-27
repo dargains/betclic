@@ -11,14 +11,32 @@
           :key="item.id"
           class="item"
         >
-          <h3
-            class="title"
-            v-text="item.title"
-          />
-          <p
-            class="text"
-            v-text="item.text"
-          />
+          <figure class="paperTop">
+            <img
+              src="../assets/images/paper_2 5.svg"
+              alt="paper top"
+            >
+          </figure>
+          <div class="text">
+            <h3
+              class="title"
+              v-text="item.title"
+            />
+            <p
+              class="text"
+              v-text="item.text"
+            />
+          </div>
+          <a
+            class="link"
+            href="item.link"
+          >Saber mais</a>
+          <figure class="paperBottom">
+            <img
+              src="../assets/images/paper_2 4.svg"
+              alt="paper bottom"
+            >
+          </figure>
         </article>
       </div>
     </div>
@@ -38,28 +56,70 @@ export default {
 
 <style lang="scss" scoped>
 .news {
-
   background-color: #DF0C14;
+  padding-top: 100px;
+  z-index: 1;
+}
+h2 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #FFF;
+  transform: rotate(1.5deg);
+  background-image: url('../assets/images/plastic_1.png');
+  background-color: #000;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 10px 16px;
+  display: inline-block;
+  top: -20px;
+  z-index: 1;
 }
 .items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  background-color: #eee;
-  padding: 40px;
-  margin-top: 20px;
+  top: -20px;
+  width: 95%;
+  margin: 0 auto;
 }
 .item {
-  background-color: #fff;
-  padding: 20px;
-}
-.title {
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  margin-bottom: 8px;
+  background-color: #F4F4F3;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
 }
 .text {
-  font-size: .8rem;
+  flex: 1;
+}
+.title {
+  font-size: 24px;
+  line-height: 23px;
+  margin-bottom: 16px;
+}
+.text {
+  font-size: 14px;
+  line-height: 18px;
+  text-transform: none;
+}
+.link {
+  display: inline-block;
+  margin-top: 30px;
+  text-decoration: none;
+  font-size: 24px;
+  z-index: 1;
+}
+.paperTop {
+  position: absolute;
+  bottom: 90%;
+  right: 0;
+  left: 0;
+}
+.paperBottom {
+  position: absolute;
+  top: 80%;
+  right: 0;
+  left: 0;
 }
 @media (max-width: 768px) {
   .items {
