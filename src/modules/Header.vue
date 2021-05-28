@@ -46,7 +46,7 @@ a {
 }
 .logout {
   position: absolute;
-  right: 0;
+  right: 40px;
   top: 0;
   padding: 16px 40px;
   background-color: #000;

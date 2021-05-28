@@ -13,6 +13,12 @@
         </figure>
         <h2>Ranking</h2>
         <ul class="items">
+          <figure class="plane">
+            <img
+              src="../assets/images/paper_plane 1.png"
+              alt="paper plane"
+            >
+          </figure>
           <li
             v-for="(item, index) in items"
             :key="item.id"
@@ -60,6 +66,12 @@ export default {
   .ranking {
     z-index: 1;
     background-color: #DF0C14;
+  }
+  .plane {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translate(-30%, 30%);
   }
   .wrapper {
     max-width: 1000px;

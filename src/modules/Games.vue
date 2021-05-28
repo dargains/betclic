@@ -94,7 +94,7 @@ export default {
   },
   computed: {
     matches () {
-      return this.$store.state.matches
+      return this.$store.state.matches.filter(match => match.status === 'open')
     },
     teams () {
       return this.$store.state.teams
@@ -149,7 +149,7 @@ export default {
       position: absolute;
       right: 0;
       left: 0;
-      top: -60px;
+      top: -50px;
     }
     h2 {
       font-size: 28px;
