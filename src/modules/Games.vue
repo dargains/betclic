@@ -21,6 +21,13 @@
         </div>
       </header>
       <div
+        v-if="done"
+        class="done"
+      >
+        <p>a tua aposta foi realizada</p>
+        <p> volta aqui no próximo dia de jogos</p>
+      </div>
+      <div
         v-if="matches.length"
         class="table"
       >
@@ -96,7 +103,8 @@ export default {
   name: 'Games',
   data () {
     return {
-      bets: {}
+      bets: {},
+      done: false
     }
   },
   computed: {
@@ -117,7 +125,7 @@ export default {
     const userBets = this.$store.state.bets.filter(bet => bet.user === parseInt(user.id))
     this.matches.forEach(match => {
       const userBet = userBets.find(bet => bet.match_id === match.id)
-      if (userBet) result[match.id] = { team1: userBet.team1, team2: userBet.team2 }
+      if (userBet) result[match.id] = { team1: userBet.team1, team2: userBet.team2, done: true }
       else result[match.id] = { team1: null, team2: null }
     })
     this.bets = result
@@ -133,7 +141,7 @@ export default {
     async onBet () {
       const bets = []
       for (const gameId in this.bets) {
-        if (!!this.bets[gameId].team1 && !!this.bets[gameId].team2) {
+        if (!!this.bets[gameId].team1 && !!this.bets[gameId].team2 && !this.bets[gameId].done) {
           bets.push({
             match_id: parseInt(gameId),
             team1: this.bets[gameId].team1,
@@ -144,7 +152,7 @@ export default {
       if (bets.length) {
         const response = await this.$store.dispatch('sendBet', bets)
         response
-          ? console.log('ok')
+          ? this.done = true
           : console.log('fail')
       }
     }
@@ -191,6 +199,26 @@ export default {
     }
     time {
       font-size: 24px;
+    }
+  }
+  .done {
+    position: absolute;
+    right: 40px;
+    left: 40px;
+    bottom: 30px;
+    top: 30px;
+    padding: 30px;
+    background-color: rgba(#000, .8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+    text-align: center;
+    flex-direction: column;
+    gap: 10px;
+    p {
+      font-size: 26px;
+      color: #FFF;
     }
   }
   .table {
