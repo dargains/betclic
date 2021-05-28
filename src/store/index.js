@@ -128,7 +128,7 @@ export default new Vuex.Store({
               }
             } else {
               // um venceu
-              if ((match.score_1 > match.score2 && thisBet.team1 > thisBet.team2) || (match.score_1 < match.score2 && thisBet.team1 < thisBet.team2)) {
+              if ((match.score_1 > match.score_2 && thisBet.team1 > thisBet.team2) || (match.score_1 < match.score_2 && thisBet.team1 < thisBet.team2)) {
                 // acertou o vencedor
                 user.points += 3
               }

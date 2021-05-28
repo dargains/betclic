@@ -28,6 +28,7 @@
           v-for="(match, index) in matches"
           :key="match.id"
           class="game"
+          :class="{'disabled': isDisabled(match)}"
         >
           <label
             class="team"
@@ -112,14 +113,22 @@ export default {
   },
   created () {
     const result = {}
-    this.matches.forEach(game => {
-      result[game.id] = { team1: null, team2: null }
+    const user = this.$store.state.user
+    const userBets = this.$store.state.bets.filter(bet => bet.user === parseInt(user.id))
+    this.matches.forEach(match => {
+      const userBet = userBets.find(bet => bet.match_id === match.id)
+      if (userBet) result[match.id] = { team1: userBet.team1, team2: userBet.team2 }
+      else result[match.id] = { team1: null, team2: null }
     })
     this.bets = result
   },
   methods: {
     getCountry (id) {
       return this.teams.find(country => country.id === id)
+    },
+    isDisabled (match) {
+      const thisMatch = this.bets[match.id]
+      return thisMatch.team1 !== null && thisMatch.team2 !== null
     },
     async onBet () {
       const bets = []
@@ -196,6 +205,18 @@ export default {
     align-items: center;
     gap: 8px;
     background-color: #C4C4C4;
+  }
+  .disabled {
+    pointer-events: none;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(#fff,.5);
+    }
   }
   .team {
     display: flex;
