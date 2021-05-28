@@ -12,25 +12,12 @@ export default new Vuex.Store({
     matches: [],
     teams: [],
     news: [],
-    users: []
+    users: [],
+    bets: []
   },
   getters: {
-    ranking () {
-      const list = [
-        {
-          name: 'Andre',
-          points: 130
-        },
-        {
-          name: 'Duarte',
-          points: 40
-        },
-        {
-          name: 'Ricardo',
-          points: 80
-        }
-      ]
-      return list.sort((a, b) => b.points - a.points)
+    ranking (state) {
+      return state.users.sort((a, b) => b.points - a.points)
     }
   },
   mutations: {
@@ -49,6 +36,9 @@ export default new Vuex.Store({
     setNews (state, payload) {
       state.news = payload
     },
+    setBets (state, payload) {
+      state.bets = payload
+    },
     setUsers (state, payload) {
       state.users = payload
     }
@@ -66,7 +56,7 @@ export default new Vuex.Store({
             email: user.email
           }
           commit('setAuth', { headers: { Authorization: `Bearer ${newUser.token}` } })
-          dispatch('getData', newUser.token).then(() => {
+          dispatch('getData').then(() => {
             commit('setUser', newUser)
           })
         }).catch(error => {
@@ -78,25 +68,29 @@ export default new Vuex.Store({
       const emptyUser = {}
       commit('setUser', emptyUser)
     },
-    async getData ({ state, commit }) {
+    async getData ({ state, commit, dispatch }) {
       const calls = [
         axios('/items/teams', state.auth),
-        axios('/items/matches', state.auth),
         axios('/items/news', state.auth),
+        axios('/items/bets', state.auth),
+        axios('/items/matches', state.auth),
         axios('/users', state.auth)
       ]
       return new Promise(resolve => {
         Promise.all(calls).then(responses => {
           commit('setTeams', responses[0].data.data)
-          commit('setMatches', responses[1].data.data)
-          commit('setNews', responses[2].data.data)
-          commit('setUsers', responses[3].data.data)
+          commit('setNews', responses[1].data.data)
+          commit('setBets', responses[2].data.data)
+          commit('setMatches', responses[3].data.data)
+          const rankingObj = {
+            users: responses[4].data.data.filter(user => user.role === 3),
+            bets: responses[2].data.data,
+            matches: responses[3].data.data
+          }
+          dispatch('buildRanking', rankingObj)
           resolve()
         })
       })
-    },
-    getBets ({ commit }) {
-
     },
     async sendBet ({ state }, payload) {
       const batch = payload.map(bet => {
@@ -113,6 +107,36 @@ export default new Vuex.Store({
           reject(error)
         })
       })
+    },
+    buildRanking ({ state, commit }, { users, bets, matches }) {
+      const usersRanked = [...users.map(user => ({ ...user, points: 0 }))]
+      const endedMatches = matches.filter(match => !match.open)
+      usersRanked.forEach(user => {
+        const userBets = bets.filter(bet => bet.user === user.id)
+        endedMatches.forEach(match => {
+          const thisBet = userBets.find(bet => bet.match_id === match.id)
+          if (thisBet) {
+            // apostou nesta partida
+            if (thisBet.team1 === match.score_1 && thisBet.team2 === match.score_2) {
+              // acertou o score
+              user.points += 5
+            } else if (match.score_1 === match.score_2) {
+              // empatou
+              if (thisBet.team1 === thisBet.team2) {
+                // acertou o empate
+                user.points += 3
+              }
+            } else {
+              // um venceu
+              if ((match.score_1 > match.score2 && thisBet.team1 > thisBet.team2) || (match.score_1 < match.score2 && thisBet.team1 < thisBet.team2)) {
+                // acertou o vencedor
+                user.points += 3
+              }
+            }
+          }
+        })
+      })
+      commit('setUsers', usersRanked)
     }
   }
 })

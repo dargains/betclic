@@ -78,6 +78,12 @@
           >
         </figure>
       </div>
+      <div
+        v-else
+        class="none"
+      >
+        Não há jogos disponíveis no momento
+      </div>
     </div>
   </section>
 </template>
@@ -94,7 +100,7 @@ export default {
   },
   computed: {
     matches () {
-      return this.$store.state.matches.filter(match => match.status === 'open')
+      return this.$store.state.matches.filter(match => match.open)
     },
     teams () {
       return this.$store.state.teams
@@ -247,6 +253,11 @@ export default {
       color: #FFF;
       font-weight: bold;
     }
+  }
+  .none {
+    padding: 30px;
+    background-color: #F4F4F3;
+    text-align: center;
   }
   .paperBottom {
     position: absolute;
