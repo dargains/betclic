@@ -139,6 +139,17 @@ h2 {
 @media (max-width: 768px) {
   .items {
     grid-template-columns: 1fr;
+    width: 100%;
+  }
+  .item {
+    padding: 20px;
+  }
+  .title,
+  .link {
+    font-size: 18px;
+  }
+  .paperBottom {
+    top: 90%;
   }
 }
 </style>

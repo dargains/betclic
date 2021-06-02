@@ -42,7 +42,7 @@ html {
 }
 @media (max-width: 768px) {
   .wrapper {
-  padding: 0 24px;
+    padding: 0 12px;
   }
 }
 </style>

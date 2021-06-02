@@ -61,4 +61,16 @@ a {
     font-size: 18px;
   }
 }
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 10px 0;
+  }
+  nav {
+    display: none;
+  }
+  .logout {
+    right: 10px;
+    top: -10px;
+  }
+}
 </style>

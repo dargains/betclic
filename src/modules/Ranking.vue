@@ -126,4 +126,18 @@ export default {
     transform: translateX(-50%);
     width: 50%;
   }
+  @media screen and (max-width: 768px) {
+    .items {
+      margin-bottom: -60px;
+      margin-top: -10px;
+      padding: 0 20px 80px;
+    }
+    .paperTop {
+      top: 0;
+    }
+    .paperBottom {
+      width: calc(100% + 40px);
+      left: -20px;
+    }
+  }
 </style>

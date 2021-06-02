@@ -171,15 +171,15 @@ export default {
   background-color: #df0c14;
   z-index: 2;
 }
+.paperTop {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: -18%;
+}
 header {
   padding: 0 30px;
   margin-bottom: 12px;
-  .paperTop {
-    position: absolute;
-    right: 0;
-    left: 0;
-    bottom: -18%;
-  }
   h2 {
     font-size: 28px;
     font-weight: bold;
@@ -319,5 +319,59 @@ header {
   right: 0;
   left: 0;
   bottom: -75px;
+}
+@media screen and (max-width: 768px) {
+  header {
+    padding: 0;
+    margin-bottom: 0;
+    div {
+      padding: 20px;
+      flex-direction: column-reverse;
+    }
+    p {
+      // font-size: 12px;
+      margin-top: 10px;
+    }
+    time {
+      font-size: 18px;
+    }
+  }
+  .table {
+    gap: 8px;
+    padding: 0 10px;
+  }
+  .game {
+    gap: 4px;
+  }
+  .team {
+    p {
+      font-size: 12px;
+    }
+    input {
+      width: 20px;
+      height: 20px;
+      font-size: 16px;
+    }
+  }
+  .flag {
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    border-width: 2px;
+  }
+  .paperTop {
+    bottom: 60%;
+  }
+  .paperBottom {
+    bottom: 0;
+    top: 100%;
+  }
+  .done {
+    right: 12px;
+    left: 12px;
+    p {
+      font-size: 18px;
+    }
+  }
 }
 </style>

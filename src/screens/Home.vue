@@ -33,4 +33,9 @@ export default {
 .home {
   padding: 30px;
 }
+@media screen and (max-width: 768px) {
+  .home {
+    padding: 12px;
+  }
+}
 </style>

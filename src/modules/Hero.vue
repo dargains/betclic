@@ -57,4 +57,12 @@ export default {
     margin: 0 auto;
   }
 }
+@media screen and (max-width: 768px) {
+  .paper {
+    padding: 20px 20px 60px;
+  }
+  .paperTop {
+    bottom: calc(100% - 5px);
+  }
+}
 </style>
