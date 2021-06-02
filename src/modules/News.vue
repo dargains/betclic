@@ -29,7 +29,7 @@
           </div>
           <a
             class="link"
-            href="item.link"
+            :href="item.link"
           >Saber mais</a>
           <figure class="paperBottom">
             <img

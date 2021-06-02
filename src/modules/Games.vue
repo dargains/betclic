@@ -25,7 +25,7 @@
         class="done"
       >
         <p>a tua aposta foi realizada</p>
-        <p> volta aqui no próximo dia de jogos</p>
+        <p>volta aqui no próximo dia de jogos</p>
       </div>
       <div
         v-if="matches.length"
@@ -35,7 +35,7 @@
           v-for="(match, index) in matches"
           :key="match.id"
           class="game"
-          :class="{'disabled': isDisabled(match)}"
+          :class="{ disabled: match.done }"
         >
           <label
             class="team"
@@ -125,8 +125,10 @@ export default {
     const userBets = this.$store.state.bets.filter(bet => bet.user === parseInt(user.id))
     this.matches.forEach(match => {
       const userBet = userBets.find(bet => bet.match_id === match.id)
-      if (userBet) result[match.id] = { team1: userBet.team1, team2: userBet.team2, done: true }
-      else result[match.id] = { team1: null, team2: null }
+      if (userBet) {
+        result[match.id] = { team1: userBet.team1, team2: userBet.team2, done: true }
+        match.done = true
+      } else result[match.id] = { team1: null, team2: null }
     })
     this.bets = result
   },
@@ -135,8 +137,9 @@ export default {
       return this.teams.find(country => country.id === id)
     },
     isDisabled (match) {
-      const thisMatch = this.bets[match.id]
-      return thisMatch.team1 !== null && thisMatch.team2 !== null
+      // const thisMatch = this.bets[match.id]
+      // return thisMatch.team1 !== null && thisMatch.team2 !== null
+      return false
     },
     async onBet () {
       const bets = []
@@ -151,9 +154,12 @@ export default {
       }
       if (bets.length) {
         const response = await this.$store.dispatch('sendBet', bets)
-        response
-          ? this.done = true
-          : console.log('fail')
+        if (response) {
+          this.done = true
+          setTimeout(() => {
+            location.reload()
+          }, 3000)
+        }
       }
     }
   }
@@ -161,157 +167,157 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .games {
-    background-color: #DF0C14;
-    z-index: 2;
-  }
-  header {
-    padding: 0 30px;
-    margin-bottom: 12px;
-    .paperTop {
-      position: absolute;
-      right: 0;
-      left: 0;
-      top: -50px;
-    }
-    h2 {
-      font-size: 28px;
-      font-weight: bold;
-      color: #FFF;
-      transform: rotate(-1.5deg);
-      background-image: url('../assets/images/plastic_1.png');
-      background-color: #000;
-      background-position: center;
-      background-size: contain;
-      background-repeat: no-repeat;
-      padding: 10px 16px;
-      display: inline-block;
-      top: -20px;
-    }
-    div {
-      background-color: #F4F4F3;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    p {
-      font-size: 16px;
-    }
-    time {
-      font-size: 24px;
-    }
-  }
-  .done {
-    position: absolute;
-    right: 40px;
-    left: 40px;
-    bottom: 30px;
-    top: 30px;
-    padding: 30px;
-    background-color: rgba(#000, .8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 4;
-    text-align: center;
-    flex-direction: column;
-    gap: 10px;
-    p {
-      font-size: 26px;
-      color: #FFF;
-    }
-  }
-  .table {
-    background-color: #F4F4F3;
-    display: flex;
-    gap: 16px;
-    flex-direction: column;
-    padding: 0 30px;
-  }
-  .game {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background-color: #C4C4C4;
-  }
-  .disabled {
-    pointer-events: none;
-    &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background-color: rgba(#fff,.5);
-    }
-  }
-  .team {
-    display: flex;
-    align-items: center;
-    flex: 1;
-    padding: 10px 0;
-    gap: 8px;
-    &:nth-of-type(1) {
-      justify-content: flex-end;
-    }
-    &:nth-of-type(2) {
-      justify-content: flex-start;
-    }
-    p {
-      text-transform: uppercase;
-      font-size: 30px;
-      line-height: 33px;
-      top: 2px;
-    }
-    input {
-      border: 0;
-      text-align: center;
-      background-color: #F4F4F3;
-      font-size: 26px;
-      width: 50px;
-      height: 50px;
-    }
-  }
-  .flag {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 4px solid white;
-    margin: 0 20px;
-    img {
-      height: 38px;
-      width: 38px;
-      top: -7px;
-      left: -7px;
-    }
-  }
-  .button {
-    transform: rotate(-1.5deg);
-    background-image: url('../assets/images/plastic_2.png');
-    background-color: #000;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 20px;
-    top: 30px;
-    z-index: 1;
-    span {
-      font-size: 28px;
-      color: #FFF;
-      font-weight: bold;
-    }
-  }
-  .none {
-    padding: 30px;
-    background-color: #F4F4F3;
-    text-align: center;
-  }
-  .paperBottom {
+.games {
+  background-color: #df0c14;
+  z-index: 2;
+}
+header {
+  padding: 0 30px;
+  margin-bottom: 12px;
+  .paperTop {
     position: absolute;
     right: 0;
     left: 0;
-    bottom: -75px;
+    bottom: -18%;
   }
+  h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+    transform: rotate(-1.5deg);
+    background-image: url("../assets/images/plastic_1.png");
+    background-color: #000;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 10px 16px;
+    display: inline-block;
+    top: -20px;
+  }
+  div {
+    background-color: #f4f4f3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  p {
+    font-size: 16px;
+  }
+  time {
+    font-size: 24px;
+  }
+}
+.done {
+  position: absolute;
+  right: 40px;
+  left: 40px;
+  bottom: 30px;
+  top: 30px;
+  padding: 30px;
+  background-color: rgba(#000, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  text-align: center;
+  flex-direction: column;
+  gap: 10px;
+  p {
+    font-size: 26px;
+    color: #fff;
+  }
+}
+.table {
+  background-color: #f4f4f3;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  padding: 0 30px;
+}
+.game {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #c4c4c4;
+}
+.disabled {
+  pointer-events: none;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(#fff, 0.5);
+  }
+}
+.team {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  padding: 10px 0;
+  gap: 8px;
+  &:nth-of-type(1) {
+    justify-content: flex-end;
+  }
+  &:nth-of-type(2) {
+    justify-content: flex-start;
+  }
+  p {
+    text-transform: uppercase;
+    font-size: 30px;
+    line-height: 33px;
+    top: 2px;
+  }
+  input {
+    border: 0;
+    text-align: center;
+    background-color: #f4f4f3;
+    font-size: 26px;
+    width: 50px;
+    height: 50px;
+  }
+}
+.flag {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid white;
+  margin: 0 20px;
+  img {
+    height: 38px;
+    width: 38px;
+    top: -7px;
+    left: -7px;
+  }
+}
+.button {
+  transform: rotate(-1.5deg);
+  background-image: url("../assets/images/plastic_2.png");
+  background-color: #000;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px;
+  top: 30px;
+  z-index: 1;
+  span {
+    font-size: 28px;
+    color: #fff;
+    font-weight: bold;
+  }
+}
+.none {
+  padding: 30px;
+  background-color: #f4f4f3;
+  text-align: center;
+}
+.paperBottom {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: -75px;
+}
 </style>
