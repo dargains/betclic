@@ -109,6 +109,9 @@ export default {
     gap: 8px;
     padding: 20px 0;
     border-bottom: 1px solid #C4C4C4;
+    font-size: 16px;
+    line-height: 18px;
+    align-items: center;
   }
   .name {
     margin-left: 20px;
@@ -131,6 +134,10 @@ export default {
       margin-bottom: -60px;
       margin-top: -10px;
       padding: 0 20px 80px;
+    }
+    .name {
+      margin-left: 10px;
+      padding-right: 10px;
     }
     .paperTop {
       top: 0;

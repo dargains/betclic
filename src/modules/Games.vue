@@ -44,7 +44,7 @@
             <p v-text="getCountry(match.team1).name" />
             <figure class="flag">
               <img
-                :src="`https://www.countryflags.io/${getCountry(match.team1).flag}/flat/64.png`"
+                :src="`https://flagcdn.com/${getCountry(match.team1).flag}.svg`"
                 :alt="getCountry(match.team1).name"
               >
             </figure>
@@ -66,7 +66,7 @@
             >
             <figure class="flag">
               <img
-                :src="`https://www.countryflags.io/${getCountry(match.team2).flag}/flat/64.png`"
+                :src="`https://flagcdn.com/${getCountry(match.team2).flag}.svg`"
                 :alt="getCountry(match.team2).name"
               >
             </figure>
@@ -284,12 +284,11 @@ header {
   height: 32px;
   border-radius: 50%;
   overflow: hidden;
-  border: 4px solid white;
+  border: 4px solid rgba(white, 1);;
   margin: 0 20px;
+  flex-shrink: 0;
   img {
-    height: 38px;
-    width: 38px;
-    top: -7px;
+    width: 37px;
     left: -7px;
   }
 }
@@ -346,6 +345,7 @@ header {
   .team {
     p {
       font-size: 12px;
+      line-height: 14px;
     }
     input {
       width: 20px;
@@ -355,9 +355,13 @@ header {
   }
   .flag {
     margin: 0;
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     border-width: 2px;
+    img {
+      width: 22px;
+      left: -4px;
+    }
   }
   .paperTop {
     bottom: 60%;
