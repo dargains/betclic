@@ -137,12 +137,16 @@ h2 {
   top: -240px;
 }
 @media (max-width: 768px) {
+  .news {
+    margin-bottom: 0;
+  }
   .items {
     grid-template-columns: 1fr;
     width: 100%;
+    gap: 100px 40px;
   }
   .item {
-    padding: 20px;
+    padding: 10px 20px 0;
   }
   .title,
   .link {
@@ -150,6 +154,14 @@ h2 {
   }
   .paperBottom {
     top: 90%;
+  }
+  .prize {
+    top: 0;
+    overflow: hidden;
+    img {
+      width: 140%;
+      left: -15%;
+    }
   }
 }
 </style>

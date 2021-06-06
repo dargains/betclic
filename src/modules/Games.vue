@@ -328,11 +328,11 @@ header {
       flex-direction: column-reverse;
     }
     p {
-      // font-size: 12px;
-      margin-top: 10px;
+      line-height: 22px;
+      margin-top: 16px;
     }
     time {
-      font-size: 18px;
+      font-size: 22px;
     }
   }
   .table {

@@ -37,6 +37,7 @@ export default {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
+  overflow: hidden;
 }
 .paperTop {
   position: absolute;
@@ -58,6 +59,15 @@ export default {
   }
 }
 @media screen and (max-width: 768px) {
+  .hero {
+    padding-top: 220px;
+  }
+  .background {
+    img {
+      width: 160%;
+      left: -30%;
+    }
+  }
   .paper {
     padding: 20px 20px 60px;
   }

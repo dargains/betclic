@@ -71,6 +71,10 @@ a {
   .logout {
     right: 10px;
     top: -10px;
+    padding: 12px 24px;
+    span {
+      font-size: 14px;
+    }
   }
 }
 </style>

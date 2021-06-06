@@ -107,11 +107,14 @@ export default {
   .item {
     display: flex;
     gap: 8px;
-    padding: 20px 0;
+    padding: 20px 0 17px;
     border-bottom: 1px solid #C4C4C4;
     font-size: 16px;
     line-height: 18px;
     align-items: center;
+    span {
+      width: 24px;
+    }
   }
   .name {
     margin-left: 20px;
@@ -135,16 +138,27 @@ export default {
       margin-top: -10px;
       padding: 0 20px 80px;
     }
+    .item {
+      font-size: 14px;
+      span {
+        width: 21px;
+      }
+    }
     .name {
       margin-left: 10px;
       padding-right: 10px;
     }
     .paperTop {
-      top: 0;
+      top: 1px;
     }
     .paperBottom {
       width: calc(100% + 40px);
       left: -20px;
+    }
+    .plane {
+      bottom: 0;
+      top: -180px;
+      transform: translateX(-50%);
     }
   }
 </style>

@@ -179,7 +179,8 @@ input {
     }
   }
   .paperTop {
-    top: -70px;
+    top: auto;
+    bottom: calc(100% - 2px);
   }
   .form {
     top: 0;
