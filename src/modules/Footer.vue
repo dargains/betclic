@@ -3,6 +3,7 @@
     <div class="wrapper">
       <p>BETCLIC EURO 2021</p>
       <div>
+        <a href="https://www.betclic.pt/termsandconditions">Termos e Condições</a>
         <a href="#">Política de privacidade</a>
         <a href="#">Regulamento</a>
       </div>
