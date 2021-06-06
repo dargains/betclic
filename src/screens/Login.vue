@@ -168,4 +168,26 @@ input {
   bottom: -100px;
   width: 240px;
 }
+@media screen and (max-width: 768px) {
+  section {
+    padding: 12px;
+  }
+  .background {
+    img {
+      width: 160%;
+      left: -30%;
+    }
+  }
+  .paperTop {
+    top: -70px;
+  }
+  .form {
+    top: 0;
+    padding: 10px 12px 40px;
+  }
+  input {
+    font-size: 14px;
+    padding: 10px 8px;
+  }
+}
 </style>
