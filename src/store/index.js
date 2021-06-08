@@ -71,7 +71,7 @@ export default new Vuex.Store({
     async getData ({ state, commit, dispatch }) {
       const calls = [
         axios('/items/teams', state.auth),
-        axios('/items/news', state.auth),
+        axios('/items/news?fields=*.*', state.auth),
         axios('/items/bets', state.auth),
         axios('/items/matches', state.auth),
         axios('/users', state.auth)

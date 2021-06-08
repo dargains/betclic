@@ -29,7 +29,8 @@
           </div>
           <a
             class="link"
-            :href="item.link"
+            target="_blank"
+            :href="item.file.data.full_url"
           >Saber mais</a>
           <figure class="paperBottom">
             <img
