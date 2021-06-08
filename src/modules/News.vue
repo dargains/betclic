@@ -65,6 +65,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@mixin break-line($line) {
+  display: -webkit-box;
+  /* autoprefixer: ignore next */
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: $line;
+  -moz-line-clamp: $line;
+  -ms-line-clamp: $line;
+  line-clamp: $line;
+}
 .news {
   background-color: #DF0C14;
   padding-top: 100px;
@@ -106,13 +119,15 @@ h2 {
 }
 .title {
   font-size: 24px;
-  line-height: 23px;
+  line-height: 28px;
   margin-bottom: 16px;
+  @include break-line(3);
 }
 .text {
   font-size: 14px;
   line-height: 18px;
   text-transform: none;
+  @include break-line(5);
 }
 .link {
   display: inline-block;

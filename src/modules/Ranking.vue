@@ -27,7 +27,7 @@
             <span v-text="`${index + 1}º`" />
             <p
               class="name"
-              v-text="`${item.first_name} ${item.last_name}`"
+              v-text="`${item.first_name} ${item.last_name || ''}`"
             />
             <p v-text="`${item.points} PTS`" />
           </li>

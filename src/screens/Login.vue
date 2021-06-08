@@ -15,7 +15,8 @@
               alt="paper top"
             >
           </figure>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+          <p>Este é um site privado de acesso reservado.</p>
+          <p>Para solicitar Log In <a href="mailto:#">clique aqui</a></p>
           <label for="email">
             <input
               id="email"
@@ -114,11 +115,12 @@ section {
 }
 p {
   font-size: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 label {
   display: block;
   margin-bottom: 24px;
+  margin-top: 20px;
 }
 input {
   width: 100%;
@@ -131,7 +133,7 @@ input {
   font-family: Gotham;
 }
 .error {
-  color: red;
+  color: #DF0C14;
   margin-bottom: 20px;
 }
 .button {

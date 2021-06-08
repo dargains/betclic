@@ -14,7 +14,13 @@
         >
       </figure>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+        Bem-vindo/a ao campeonato dos adeptos de bancada. Para a Betclic todas as oportunidades são boas para nos divertirmos e por isso decidimos criar este site privado e convidar jornalistas, profissionais de comunicação e 3 ex-jogadores (Nuno Gomes, Costinha e Jorge Andrade) para darem os palpites para os jogos do EURO2020. No fim quem fizer mais pontos ganha uma viagem para duas pessoas, com estadia em hotel de 5 estrelas incluída, à capital do País vencedor do EURO.
+        <br>
+        <br>
+        Passa por cá no dia anterior aos jogos para conseguires apostar sem contratempos.
+        <br>
+        <br>
+        Boa sorte.
       </p>
     </div>
   </section>
