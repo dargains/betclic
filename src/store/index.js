@@ -46,22 +46,25 @@ export default new Vuex.Store({
   actions: {
     login ({ commit, dispatch }, payload) {
       return new Promise((resolve, reject) => {
-        axios.post('/auth/authenticate', payload).then(response => {
-          const { user } = response.data.data
-          const newUser = {
-            token: response.data.data.token,
-            id: user.id,
-            first_name: user.first_name,
-            last_name: user.last_name,
-            email: user.email
-          }
-          commit('setAuth', { headers: { Authorization: `Bearer ${newUser.token}` } })
-          dispatch('getData').then(() => {
-            commit('setUser', newUser)
+        axios
+          .post('/auth/authenticate', payload)
+          .then(response => {
+            const { user } = response.data.data
+            const newUser = {
+              token: response.data.data.token,
+              id: user.id,
+              first_name: user.first_name,
+              last_name: user.last_name,
+              email: user.email
+            }
+            commit('setAuth', { headers: { Authorization: `Bearer ${newUser.token}` } })
+            dispatch('getData').then(() => {
+              commit('setUser', newUser)
+            })
           })
-        }).catch(error => {
-          reject(error.response.data.error.message)
-        })
+          .catch(error => {
+            reject(error.response.data.error.message)
+          })
       })
     },
     logout ({ commit }) {
@@ -71,7 +74,7 @@ export default new Vuex.Store({
     async getData ({ state, commit, dispatch }) {
       const calls = [
         axios('/items/teams', state.auth),
-        axios('/items/news?fields=*.*', state.auth),
+        axios('/items/news?fields=*.*&limit=6&sort=-id', state.auth),
         axios('/items/bets', state.auth),
         axios('/items/matches', state.auth),
         axios('/users', state.auth)
@@ -101,11 +104,13 @@ export default new Vuex.Store({
         return axios.post('/items/bets', data, state.auth)
       })
       return new Promise((resolve, reject) => {
-        Promise.all(batch).then(responses => {
-          resolve(true)
-        }).catch(error => {
-          reject(error)
-        })
+        Promise.all(batch)
+          .then(responses => {
+            resolve(true)
+          })
+          .catch(error => {
+            reject(error)
+          })
       })
     },
     buildRanking ({ state, commit }, { users, bets, matches }) {
@@ -128,7 +133,10 @@ export default new Vuex.Store({
               }
             } else {
               // um venceu
-              if ((match.score_1 > match.score_2 && thisBet.team1 > thisBet.team2) || (match.score_1 < match.score_2 && thisBet.team1 < thisBet.team2)) {
+              if (
+                (match.score_1 > match.score_2 && thisBet.team1 > thisBet.team2) ||
+                (match.score_1 < match.score_2 && thisBet.team1 < thisBet.team2)
+              ) {
                 // acertou o vencedor
                 user.points += 3
               }
