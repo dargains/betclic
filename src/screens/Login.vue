@@ -16,7 +16,9 @@
             >
           </figure>
           <p>Este é um site privado de acesso reservado.</p>
-          <p>Para solicitar Log In <a href="mailto:#">clique aqui</a></p>
+          <p>
+            Para solicitar Log In <a href="mailto:d.nascimento@betclicgroup.com">clique aqui</a>
+          </p>
           <label for="email">
             <input
               id="email"
@@ -102,7 +104,7 @@ section {
   overflow: hidden;
 }
 .intro {
-  background-color: #DF0C14;
+  background-color: #df0c14;
   height: 100%;
 }
 .form {
@@ -111,7 +113,7 @@ section {
   max-width: 500px;
   top: -100px;
   margin: 0 auto;
-  background-color: #F4F4F3;
+  background-color: #f4f4f3;
 }
 p {
   font-size: 15px;
@@ -124,7 +126,7 @@ label {
 }
 input {
   width: 100%;
-  background-color: #C4C4C4;
+  background-color: #c4c4c4;
   border: 0;
   width: 100%;
   padding: 16px;
@@ -133,12 +135,12 @@ input {
   font-family: Gotham;
 }
 .error {
-  color: #DF0C14;
+  color: #df0c14;
   margin-bottom: 20px;
 }
 .button {
   transform: rotate(-1.5deg);
-  background-image: url('../assets/images/plastic_1.png');
+  background-image: url("../assets/images/plastic_1.png");
   background-color: #000;
   background-position: center;
   background-size: contain;
@@ -147,7 +149,7 @@ input {
   z-index: 1;
   span {
     font-size: 28px;
-    color: #FFF;
+    color: #fff;
     font-weight: bold;
   }
 }
