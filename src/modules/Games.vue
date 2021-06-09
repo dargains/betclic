@@ -35,7 +35,7 @@
           v-for="(match, index) in matches"
           :key="match.id"
           class="game"
-          :class="{ disabled: match.done }"
+          :class="{ disabled: match.done || now.diff(moment(match.time).subtract(30, 'minutes'), 'minutes') > 0}"
         >
           <label
             class="team"
@@ -97,6 +97,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 const monthNames = ['Maio', 'Junho', 'Julho', 'Agosto']
 
 export default {
@@ -104,12 +105,16 @@ export default {
   data () {
     return {
       bets: {},
-      done: false
+      done: false,
+      moment
     }
   },
   computed: {
+    now () {
+      return moment()
+    },
     matches () {
-      return this.$store.state.matches.filter(match => match.open)
+      return this.$store.state.matches.filter(match => !match.done)
     },
     teams () {
       return this.$store.state.teams
@@ -135,11 +140,6 @@ export default {
   methods: {
     getCountry (id) {
       return this.teams.find(country => country.id === id)
-    },
-    isDisabled (match) {
-      // const thisMatch = this.bets[match.id]
-      // return thisMatch.team1 !== null && thisMatch.team2 !== null
-      return false
     },
     async onBet () {
       const bets = []
