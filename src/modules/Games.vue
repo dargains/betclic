@@ -289,6 +289,7 @@ header {
   flex-shrink: 0;
   img {
     width: 37px;
+    height: 24px;
     left: -7px;
   }
 }
@@ -360,6 +361,7 @@ header {
     border-width: 2px;
     img {
       width: 22px;
+      height: 15px;
       left: -4px;
     }
   }
