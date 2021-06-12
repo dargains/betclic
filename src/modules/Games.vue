@@ -114,7 +114,7 @@ export default {
       return moment()
     },
     matches () {
-      return this.$store.state.matches.filter(match => !match.done)
+      return this.$store.state.matches.filter(match => !match.done && moment(match.time).isSame(new Date(), 'day'))
     },
     teams () {
       return this.$store.state.teams
@@ -133,7 +133,7 @@ export default {
       if (userBet) {
         result[match.id] = { team1: userBet.team1, team2: userBet.team2, done: true }
         match.done = true
-      } else result[match.id] = { team1: null, team2: null }
+      } else result[match.id] = { team1: match.score_1, team2: match.score_2 }
     })
     this.bets = result
   },
