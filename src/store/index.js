@@ -73,11 +73,11 @@ export default new Vuex.Store({
     },
     async getData ({ state, commit, dispatch }) {
       const calls = [
-        axios('/items/teams', state.auth),
+        axios('/items/teams?limit=-1', state.auth),
         axios('/items/news?fields=*.*&limit=6&sort=-id', state.auth),
-        axios('/items/bets', state.auth),
-        axios('/items/matches', state.auth),
-        axios('/users', state.auth)
+        axios('/items/bets?limit=-1', state.auth),
+        axios('/items/matches?limit=-1', state.auth),
+        axios('/users?limit=-1', state.auth)
       ]
       return new Promise(resolve => {
         Promise.all(calls).then(responses => {
