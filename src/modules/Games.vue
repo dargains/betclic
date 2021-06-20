@@ -35,7 +35,10 @@
           v-for="(match, index) in matches"
           :key="match.id"
           class="game"
-          :class="{ disabled: match.done || now.diff(moment(match.time).subtract(30, 'minutes'), 'minutes') > 0}"
+          :class="{
+            disabled:
+              match.done || now.diff(moment(match.time).subtract(30, 'minutes'), 'minutes') > 0
+          }"
         >
           <label
             class="team"
@@ -74,6 +77,7 @@
           </label>
         </li>
         <button
+          v-if="!betting"
           class="button"
           @click="onBet"
         >
@@ -114,7 +118,9 @@ export default {
       return moment()
     },
     matches () {
-      return this.$store.state.matches.filter(match => !match.done && moment(match.time).isSame(new Date(), 'day'))
+      return this.$store.state.matches.filter(
+        match => !match.done && moment(match.time).isSame(new Date(), 'day')
+      )
     },
     teams () {
       return this.$store.state.teams
@@ -143,6 +149,7 @@ export default {
     },
     async onBet () {
       const bets = []
+      this.betting = true
       for (const gameId in this.bets) {
         if (!!this.bets[gameId].team1 && !!this.bets[gameId].team2 && !this.bets[gameId].done) {
           bets.push({
@@ -156,11 +163,13 @@ export default {
         const response = await this.$store.dispatch('sendBet', bets)
         if (response) {
           this.done = true
+          this.betting = false
           setTimeout(() => {
             location.reload()
           }, 3000)
         }
-      }
+        this.betting = false
+      } else this.betting = false
     }
   }
 }
@@ -284,7 +293,7 @@ header {
   height: 32px;
   border-radius: 50%;
   overflow: hidden;
-  border: 4px solid rgba(white, 1);;
+  border: 4px solid rgba(white, 1);
   margin: 0 20px;
   flex-shrink: 0;
   img {
